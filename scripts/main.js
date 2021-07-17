@@ -14,3 +14,4 @@ function addBookToLibrary() {
 }
 
 addBookToLibrary();
+console.log(myLibrary);
