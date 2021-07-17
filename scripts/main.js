@@ -1,5 +1,10 @@
 let myLibrary = [];
 const libraryBox = document.querySelector('.library-box');
+const submitButton = document.querySelector('#submit-button');
+const bookTitle = document.querySelector('#book-title');
+const authorName = document.querySelector('#author');
+const pageCount = document.querySelector('#page-count');
+const bookFinished = document.getElementsByName('read');
 
 function Book(title, author, pageCount, read) {
     this.title = title;
@@ -14,4 +19,13 @@ function addBookToLibrary() {
 }
 
 addBookToLibrary();
-console.log(myLibrary);
+
+submitButton.onclick = function() {
+    bookFinished.forEach(choice => {
+        if (choice.checked) {
+            console.log(choice.value);
+        }
+    });
+}
+
+
