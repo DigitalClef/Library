@@ -4,17 +4,27 @@
         <title>Library</title>
         <link rel='stylesheet' href='styles/styles.css'>
     </head>
-    <body>
-        <h1>Library time!</h1>
-        <div class='library-box'></div>
+    <body id='body'>
+        <h1>Local Library</h1>
+        <button id='add-book'>Add Book</button>
+        <div class='library-box'>
+            <div class='book-info'>
+                <p>title</p>
+                <p>author</p>
+                <p>pages</p>
+                <p>read</p>
+            </div>
+        </div>
         <div class='user-input'>
+            <span id='close'>&#10005;</span>
+            <p>Enter book information</p>
             <input type='text' id='book-title' name='title' placeholder='Title'><br>
             <input type='text' id='author' name='author' placeholder='Author'><br>
             <input type='text' id='page-count' name='page-count' placeholder='Page count'>
-            <p>Finished?
-                <input type='radio' id='read-true' name='read' value='Yes'>
+            <p>Finished:
+                <input type='radio' id='read-true' name='read' value='yes'>
                 <label for='read-true'>Yes</label>
-                <input type='radio' id='read-false' name='read' value='No'>
+                <input type='radio' id='read-false' name='read' value='no'>
                 <label for='read-false'>No</label><br>
             </p>
             <input type='submit' id='submit-button' value='submit'>
