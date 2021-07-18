@@ -4,7 +4,7 @@ const submitButton = document.querySelector('#submit-button');
 const bookTitle = document.querySelector('#book-title');
 const authorName = document.querySelector('#author');
 const pageCount = document.querySelector('#page-count');
-const bookFinished = document.getElementsByName('read');
+const bookFinished = document.querySelector('#finished-book');
 const addBook = document.querySelector('#add-book');
 const userInput = document.querySelector('.user-input');
 const closeModal = document.querySelector('#close');
@@ -18,16 +18,10 @@ function Book(title, author, pageCount, read) {
 }
 
 function addBookToLibrary() {
-    let read;
-    bookFinished.forEach(book => {
-        if (book.checked) {
-            read = book.value;
-        };
-    });
-    const book1 = new Book(bookTitle.value, authorName.value, pageCount.value, read);
+    const book1 = new Book(bookTitle.value, authorName.value, pageCount.value, bookFinished.checked);
     myLibrary.push(book1);
-    console.log(myLibrary);
     hideUserInput();
+    console.log(myLibrary);
 }
 
 //clears every input field on the userInput modal div
@@ -35,9 +29,7 @@ function clearUserInput() {
     bookTitle.value = '';
     authorName.value = '';
     pageCount.value = '';
-    bookFinished.forEach(book => {
-        book.checked = false;
-    });
+    bookFinished.checked = false;
 }
 
 function displayUserInput() {
