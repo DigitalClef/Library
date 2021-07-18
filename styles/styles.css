@@ -44,6 +44,11 @@ html {
     width: 30vmin;
 }
 
+#page-count-warning {
+    color:rgb(206, 0, 0);
+    display: none;
+}
+
 #submit-button {
     width: 40%;
 }

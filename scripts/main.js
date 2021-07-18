@@ -8,7 +8,7 @@ const bookFinished = document.querySelector('#finished-book');
 const addBook = document.querySelector('#add-book');
 const userInput = document.querySelector('.user-input');
 const closeModal = document.querySelector('#close');
-
+const pageNumberAlert = document.querySelector('#page-count-warning');
 
 function Book(title, author, pageCount, read) {
     this.title = title;
@@ -18,6 +18,15 @@ function Book(title, author, pageCount, read) {
 }
 
 function addBookToLibrary() {
+    if (bookTitle.value === '' || authorName.value === '' || pageCount.value === '') {
+        alert('Please fill each field before submitting.');
+        return;
+    }
+    if (isNaN(pageCount.value) && pageCount.value !== null) {
+        pageNumberAlert.style.display = 'block';
+        pageCount.style.border = '2px solid red';
+        return;
+    }
     const book1 = new Book(bookTitle.value, authorName.value, pageCount.value, bookFinished.checked);
     myLibrary.push(book1);
     hideUserInput();
@@ -30,6 +39,9 @@ function clearUserInput() {
     authorName.value = '';
     pageCount.value = '';
     bookFinished.checked = false;
+    pageNumberAlert.style.display = 'none';
+    pageCount.style.border = '';
+    
 }
 
 function displayUserInput() {
