@@ -23,7 +23,7 @@ function addBookToLibrary() {
         alert('Please fill each field before submitting.');
         return;
     }
-    if (isNaN(pageCount.value) && pageCount.value !== null) {
+    if ((isNaN(pageCount.value) && pageCount.value !== null) || pageCount.value < 0) {
         pageNumberAlert.style.display = 'block';
         pageCount.style.border = '2px solid red';
         return;
