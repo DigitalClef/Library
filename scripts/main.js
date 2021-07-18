@@ -27,6 +27,17 @@ function addBookToLibrary() {
     const book1 = new Book(bookTitle.value, authorName.value, pageCount.value, read);
     myLibrary.push(book1);
     console.log(myLibrary);
+    hideUserInput();
+}
+
+//clears every input field on the userInput modal div
+function clearUserInput() {
+    bookTitle.value = '';
+    authorName.value = '';
+    pageCount.value = '';
+    bookFinished.forEach(book => {
+        book.checked = false;
+    });
 }
 
 function displayUserInput() {
@@ -34,6 +45,7 @@ function displayUserInput() {
 }
 function hideUserInput() {
     userInput.style.display = 'none';
+    clearUserInput();
 }
 
 submitButton.onclick = addBookToLibrary;
