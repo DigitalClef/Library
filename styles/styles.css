@@ -1,5 +1,75 @@
+html {
+    height: 100vh;
+    width: 100vw;
+}
+
+#body {
+    height: 100%;
+    width: 100%;
+}
+
+.book-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    border: 1px solid black;
+    font-size: 1.5em;
+}
+
+#close {
+    position: absolute;
+    top: 1%;
+    right: 2%;
+    width: 5%;
+    height: 6%;
+}
+
+#close:hover {
+    transform: scale(1.1);
+}
+
 .library-box {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 1fr;
+    width: 100%;
+    height: 100%;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1%;
+    background-color: white;
 }
+
+.library-box > *{
+    background-color: chartreuse;
+    height: 40vmin;
+    width: 30vmin;
+}
+
+#submit-button {
+    width: 40%;
+}
+
+.user-input {
+    display: none;
+    position: fixed;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 45vmax;
+    height: 45vmax;
+    top: 5%;
+    left: 30vw;
+    background-color: aquamarine;
+    border: 3px solid black;
+    border-radius: 5%;
+    z-index: 1;
+}
+
+.user-input > * {
+    width: 80%;
+    height: 10%;
+    font-size: 1.5em;
+    padding-left: 1%;
+}
+
+
+
