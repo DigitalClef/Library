@@ -9,6 +9,7 @@ const addBook = document.querySelector('#add-book');
 const userInput = document.querySelector('.user-input');
 const closeModal = document.querySelector('#close');
 const pageNumberAlert = document.querySelector('#page-count-warning');
+const coverUp = document.querySelector('#cover-up');
 
 function Book(title, author, pageCount, read) {
     this.title = title;
@@ -41,11 +42,14 @@ function clearUserInput() {
     bookFinished.checked = false;
     pageNumberAlert.style.display = 'none';
     pageCount.style.border = '';
+    coverUp.style.display = 'none'
     
 }
 
 function displayUserInput() {
     userInput.style.display = 'flex';
+    coverUp.style.display = 'block';
+
 }
 function hideUserInput() {
     userInput.style.display = 'none';
