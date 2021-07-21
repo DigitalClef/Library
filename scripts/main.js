@@ -24,14 +24,15 @@ function addBookToLibrary() {
         return;
     }
     if ((isNaN(pageCount.value) && pageCount.value !== null) || pageCount.value < 0) {
-        pageNumberAlert.style.display = 'block';
+        pageNumberAlert.style.display = 'inline';
         pageCount.style.border = '2px solid red';
         return;
     }
+
     const book1 = new Book(bookTitle.value, authorName.value, pageCount.value, bookFinished.checked);
     myLibrary.push(book1);
     hideUserInput();
-    console.log(myLibrary);
+    updateLibrary();
 }
 
 //clears every input field on the userInput modal div
@@ -54,6 +55,17 @@ function displayUserInput() {
 function hideUserInput() {
     userInput.style.display = 'none';
     clearUserInput();
+}
+
+function updateLibrary() {
+    let newBook = document.createElement('div');
+    let lastObject = myLibrary[myLibrary.length-1];
+    for (let key in lastObject) {
+        let bookInfo = document.createElement('p');
+        bookInfo.innerText = lastObject[key];
+        newBook.appendChild(bookInfo);
+    };
+    libraryBox.appendChild(newBook);
 }
 
 submitButton.onclick = addBookToLibrary;
