@@ -17,15 +17,16 @@ html {
     font-size: 1.5em;
 }
 
-#close {
+.close {
     position: absolute;
-    top: 1%;
-    right: 2%;
-    width: 5%;
-    height: 6%;
+    top: 2%;
+    right: 6%;
+    width: 3%;
+    height: 4%;
+    font-size: 1.5em
 }
 
-#close:hover {
+.close:hover {
     transform: scale(1.1);
 }
 
@@ -52,7 +53,19 @@ html {
 .library-box > *{
     background-color: chartreuse;
     height: 40vmin;
-    width: 30vmin;
+    width: 40vmin;
+    border: 1px solid black ;
+    border-radius: 5%;
+}
+
+.new-book {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    font-size: 1.5em;
+    padding-left: 5%;
 }
 
 #page-count-warning {
@@ -80,12 +93,12 @@ html {
     z-index: 2;
 }
 
-.user-input > * {
+.user-input > input {
     width: 80%;
     height: 10%;
     font-size: 1.5em;
     padding-left: 1%;
-}
+} 
 
 
 

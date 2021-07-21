@@ -3,33 +3,41 @@ const libraryBox = document.querySelector('.library-box');
 const submitButton = document.querySelector('#submit-button');
 const bookTitle = document.querySelector('#book-title');
 const authorName = document.querySelector('#author');
-const pageCount = document.querySelector('#page-count');
+const pages = document.querySelector('#page-count');
 const bookFinished = document.querySelector('#finished-book');
 const addBook = document.querySelector('#add-book');
 const userInput = document.querySelector('.user-input');
-const closeModal = document.querySelector('#close');
+const closeModal = document.querySelector('#close-modal');
 const pageNumberAlert = document.querySelector('#page-count-warning');
 const coverUp = document.querySelector('#cover-up');
 
-function Book(title, author, pageCount, read) {
+function Book(title, author, pages, finished) {
     this.title = title;
     this.author = author;
-    this.pageCount = pageCount;
-    this.read = read;
+    this.pages = pages;
+    this.finished = finished;
 }
 
 function addBookToLibrary() {
-    if (bookTitle.value === '' || authorName.value === '' || pageCount.value === '') {
+    let readString;
+    if (bookTitle.value === '' || authorName.value === '' || pages.value === '') {
         alert('Please fill each field before submitting.');
         return;
     }
-    if ((isNaN(pageCount.value) && pageCount.value !== null) || pageCount.value < 0) {
+    if ((isNaN(pages.value) && pages.value !== null) || pages.value < 0) {
         pageNumberAlert.style.display = 'inline';
-        pageCount.style.border = '2px solid red';
+        pages.style.border = '2px solid red';
         return;
     }
 
-    const book1 = new Book(bookTitle.value, authorName.value, pageCount.value, bookFinished.checked);
+    if (bookFinished.checked) {
+        readString = 'yes';
+    }
+    else {
+        readString = 'no';
+    }
+
+    const book1 = new Book(bookTitle.value, authorName.value, pages.value, readString);
     myLibrary.push(book1);
     hideUserInput();
     updateLibrary();
@@ -39,10 +47,10 @@ function addBookToLibrary() {
 function clearUserInput() {
     bookTitle.value = '';
     authorName.value = '';
-    pageCount.value = '';
+    pages.value = '';
     bookFinished.checked = false;
     pageNumberAlert.style.display = 'none';
-    pageCount.style.border = '';
+    pages.style.border = '';
     coverUp.style.display = 'none'
     
 }
@@ -59,10 +67,15 @@ function hideUserInput() {
 
 function updateLibrary() {
     let newBook = document.createElement('div');
+    newBook.classList.add('new-book');
     let lastObject = myLibrary[myLibrary.length-1];
+    removeBook = document.createElement('span');
+    removeBook.innerHTML = '&#10005';
+    removeBook.classList.add('close');
+    newBook.appendChild(removeBook);
     for (let key in lastObject) {
         let bookInfo = document.createElement('p');
-        bookInfo.innerText = lastObject[key];
+        bookInfo.innerText = `${key}: ${lastObject[key]}`;
         newBook.appendChild(bookInfo);
     };
     libraryBox.appendChild(newBook);
