@@ -10,6 +10,8 @@ const userInput = document.querySelector('.user-input');
 const closeModal = document.querySelector('#close-modal');
 const pageNumberAlert = document.querySelector('#page-count-warning');
 const coverUp = document.querySelector('#cover-up');
+let newBook = '';
+let removeBook = '';
 
 function Book(title, author, pages, finished) {
     this.title = title;
@@ -66,19 +68,38 @@ function hideUserInput() {
 }
 
 function updateLibrary() {
-    let newBook = document.createElement('div');
-    newBook.classList.add('new-book');
-    let lastObject = myLibrary[myLibrary.length-1];
-    removeBook = document.createElement('span');
-    removeBook.innerHTML = '&#10005';
-    removeBook.classList.add('close');
-    newBook.appendChild(removeBook);
-    for (let key in lastObject) {
-        let bookInfo = document.createElement('p');
-        bookInfo.innerText = `${key}: ${lastObject[key]}`;
-        newBook.appendChild(bookInfo);
-    };
-    libraryBox.appendChild(newBook);
+    clearLibrary();
+    for (let i = 0; i < myLibrary.length; i++) {
+        newBook = document.createElement('div');
+        newBook.classList.add('new-book');
+        newBook.setAttribute('data-book', `${i}`);
+        removeBook = document.createElement('span');
+        removeBook.innerHTML = '&#10005';
+        removeBook.classList.add('close');
+        removeBook.setAttribute('data-close', `${i}`);
+        newBook.appendChild(removeBook);
+        for (let key in myLibrary[i]) {
+            let bookInfo = document.createElement('p');
+            bookInfo.innerText = `${key}: ${myLibrary[i][key]}`;
+            newBook.appendChild(bookInfo);
+        }
+        libraryBox.appendChild(newBook);
+    }
+    document.querySelectorAll('[data-book]').forEach( closeBook => {
+        closeBook.onclick = function() {
+            console.log(this.remove());
+        }
+    });
+}
+
+function clearLibrary() {
+    while (newBook.firstChild) {
+        newBook.removeChild(newBook.firstChild);
+    }
+
+    while (libraryBox.firstChild) {
+        libraryBox.removeChild(libraryBox.firstChild);
+    }
 }
 
 submitButton.onclick = addBookToLibrary;
