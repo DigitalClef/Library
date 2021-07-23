@@ -4,10 +4,21 @@ html {
     left: 0;
 }
 
+#add-book {
+    font-size: 30px;
+    height: 100px;
+    width: 200px;
+    padding: 1px;
+    margin-bottom: 10px;
+}
+
 #body {
     height: 100%;
     width: 100%;
     left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .book-info {
@@ -43,6 +54,18 @@ html {
     z-index: 1;
 }
 
+#header {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+#image {
+    height: 200px;
+    width: 300px;
+    background-color: white;
+}
+
 .library-box {
     display: grid;
     width: 100%;
@@ -60,6 +83,10 @@ html {
     width: 200px;
     border: 1px solid black ;
     border-radius: 5%;
+}
+
+#main-title {
+    font-size: 60px;
 }
 
 .new-book {
@@ -80,6 +107,12 @@ html {
 
 #submit-button {
     width: 40%;
+}
+
+.title-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .user-input {
