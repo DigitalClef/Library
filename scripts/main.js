@@ -45,6 +45,11 @@ function addBookToLibrary() {
     updateLibrary();
 }
 
+function removeBookFromLibrary() {
+    this.parentElement.remove();
+    myLibrary.splice(this.dataset.close, 1);
+}
+
 //clears every input field on the userInput modal div
 function clearUserInput() {
     bookTitle.value = '';
@@ -54,7 +59,6 @@ function clearUserInput() {
     pageNumberAlert.style.display = 'none';
     pages.style.border = '';
     coverUp.style.display = 'none'
-    
 }
 
 function displayUserInput() {
@@ -85,10 +89,8 @@ function updateLibrary() {
         }
         libraryBox.appendChild(newBook);
     }
-    document.querySelectorAll('[data-book]').forEach( closeBook => {
-        closeBook.onclick = function() {
-            console.log(this.remove());
-        }
+    document.querySelectorAll('[data-close]').forEach( closeBook => {
+        closeBook.onclick = removeBookFromLibrary;
     });
 }
 
