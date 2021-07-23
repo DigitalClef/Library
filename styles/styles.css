@@ -19,6 +19,7 @@ html {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-image: linear-gradient(pink, white, lightblue);
 }
 
 .book-info {
@@ -63,7 +64,7 @@ html {
 #image {
     height: 200px;
     width: 300px;
-    background-color: white;
+    background-image: linear-gradient(white. pink, white);
 }
 
 .library-box {
@@ -72,13 +73,13 @@ html {
     height: 100%;
     grid-template-columns: repeat(auto-fill, 250px);
     gap: 3%;
-    background-color: grey;
+    background-image: linear-gradient(to right, rgb(187, 143, 107), rgb(204, 155, 115), rgb(187, 143, 107));
     justify-content: space-around;
     padding: 10px;
 }
 
 .library-box > *{
-    background-color: chartreuse;
+    background-color: rgb(108, 255, 108);
     height: 300px;
     width: 200px;
     border: 1px solid black ;
