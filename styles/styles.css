@@ -81,9 +81,21 @@ html {
 .library-box > *{
     background-color: rgb(108, 255, 108);
     height: 300px;
-    width: 200px;
+    width: 300px;
     border: 1px solid black ;
     border-radius: 5%;
+    animation-name: book-create;
+    animation-duration: .5s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes book-create {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 #main-title {
@@ -96,9 +108,8 @@ html {
     flex-direction: column;
     justify-content: space-evenly;
     align-items: flex-start;
-    flex-wrap: wrap;
     font-size: 20px;
-    padding-left: 5%;
+    padding-left: 5px;
 }
 
 #page-count-warning {
@@ -107,7 +118,7 @@ html {
 }
 
 #submit-button {
-    width: 40%;
+    width: 20% !important;
 }
 
 .title-box {
@@ -116,23 +127,51 @@ html {
     align-items: center;
 }
 
-.user-input {
+#user-input {
     display: none;
     position: fixed;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    width: 45vmax;
-    height: 45vmax;
-    top: 5%;
-    left: 30vw;
+    text-align: center;
     background-color: aquamarine;
     border: 3px solid black;
     border-radius: 5%;
     z-index: 2;
 }
 
-.user-input > input {
+.modal-animation {
+    animation-name: modal-animate;
+    animation-duration: .5s;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+}
+
+.modal-animation-reverse {
+    animation-name: modal-animate;
+    animation-duration: .5s;
+    animation-direction: reverse;
+    animation-fill-mode: forwards;
+}
+
+@keyframes modal-animate {
+    from {
+        display: none;
+        top: 0px;
+        opacity: 0;
+        width: 1vmax;
+        height: 1vmax;
+    }
+    to {
+        top: 60px;
+        opacity: 1;
+        width: 45vmax;
+        height: 45vmax;
+    }
+
+}
+
+#user-input > input {
     width: 80%;
     height: 10%;
     font-size: 1.5em;

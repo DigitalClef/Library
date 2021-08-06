@@ -6,11 +6,11 @@ const authorName = document.querySelector('#author');
 const pages = document.querySelector('#page-count');
 const bookFinished = document.querySelector('#finished-book');
 const addBook = document.querySelector('#add-book');
-const userInput = document.querySelector('.user-input');
+const userInput = document.querySelector('#user-input');
 const closeModal = document.querySelector('#close-modal');
 const pageNumberAlert = document.querySelector('#page-count-warning');
 const coverUp = document.querySelector('#cover-up');
-let newBook = '';
+let bookcard = '';
 let removeBook = '';
 
 function Book(title, author, pages, finished) {
@@ -26,12 +26,11 @@ function addBookToLibrary() {
         alert('Please fill each field before submitting.');
         return;
     }
-    if ((isNaN(pages.value) && pages.value !== null) || pages.value < 0) {
+    if (isNaN(pages.value) || pages.value < 0) {
         pageNumberAlert.style.display = 'inline';
         pages.style.border = '2px solid red';
         return;
     }
-
     if (bookFinished.checked) {
         readString = 'yes';
     }
@@ -42,12 +41,7 @@ function addBookToLibrary() {
     const book1 = new Book(bookTitle.value, authorName.value, pages.value, readString);
     myLibrary.push(book1);
     hideUserInput();
-    updateLibrary();
-}
-
-function removeBookFromLibrary() {
-    this.parentElement.remove();
-    myLibrary.splice(this.dataset.close, 1);
+    updateLibrary(myLibrary[myLibrary.length-1]);
 }
 
 //clears every input field on the userInput modal div
@@ -62,46 +56,28 @@ function clearUserInput() {
 }
 
 function displayUserInput() {
-    userInput.style.display = 'flex';
-    coverUp.style.display = 'block';
 
+    userInput.style.display = 'flex';
+    userInput.classList.remove('modal-animation-reverse');
+    userInput.classList.add('modal-animation');
+    coverUp.style.display = 'block';
 }
+
 function hideUserInput() {
-    userInput.style.display = 'none';
+    userInput.classList.remove('modal-animation');
+    userInput.classList.add('modal-animation-reverse');
     clearUserInput();
 }
 
-function updateLibrary() {
-    clearLibrary();
-    for (let i = 0; i < myLibrary.length; i++) {
-        newBook = document.createElement('div');
-        newBook.classList.add('new-book');
-        newBook.setAttribute('data-book', `${i}`);
-        removeBook = document.createElement('span');
-        removeBook.innerHTML = '&#10005';
-        removeBook.classList.add('close');
-        removeBook.setAttribute('data-close', `${i}`);
-        newBook.appendChild(removeBook);
-        for (let key in myLibrary[i]) {
-            let bookInfo = document.createElement('p');
-            bookInfo.innerText = `${key}: ${myLibrary[i][key]}`;
-            newBook.appendChild(bookInfo);
-        }
-        libraryBox.appendChild(newBook);
+function updateLibrary(book) {
+    bookcard = document.createElement('div');
+    bookcard.classList.add('new-book');
+    for (let property in book) {
+        let bookcardInfo = document.createElement('div');
+        bookcardInfo.innerText = `${property}: ${book[property]}`
+        bookcard.appendChild(bookcardInfo);
     }
-    document.querySelectorAll('[data-close]').forEach( closeBook => {
-        closeBook.onclick = removeBookFromLibrary;
-    });
-}
-
-function clearLibrary() {
-    while (newBook.firstChild) {
-        newBook.removeChild(newBook.firstChild);
-    }
-
-    while (libraryBox.firstChild) {
-        libraryBox.removeChild(libraryBox.firstChild);
-    }
+    libraryBox.appendChild(bookcard);
 }
 
 submitButton.onclick = addBookToLibrary;
